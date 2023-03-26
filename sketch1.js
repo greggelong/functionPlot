@@ -17,9 +17,23 @@ function setup() {
   plotfun("x", color(0, 255, 0));
   //plotfun("(-0.5*x)+2", color(255, 0, 255));
   plotfun("(0.3*x)**2 - 3", color(255, 255, 0));
-  //plotfun("((.13*x)**3+(.13*x)**2 -6*x-8)/4", color(0, 255, 255));
+  plotfun("((.13*x)**3+(.13*x)**2 -6*x-8)/4", color(0, 255, 255));
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
+}
+
+function draw(){
+  translate(width / 2, height / 2); // move to center
+  background(0);
+  zoom = map(mouseX,0,width,1,30)
+  zoom = constrain(zoom,1,30) //constrain zoom
+  //print(zoom)
+  plotaxis();
+  plotfun("x", color(0, 255, 0));
+  //plotfun("(-0.5*x)+2", color(255, 0, 255));
+  plotfun("(0.3*x)**2 - 3", color(255, 255, 0));
+  //plotfun("sin(x)*10", color(255));
+
 }
 
 function plotaxis() {
