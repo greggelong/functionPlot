@@ -1,4 +1,4 @@
-let step = 1;
+let zoom =1;
 let cnv;
 function setup() {
   cnv =createCanvas(600, 600);
@@ -15,10 +15,10 @@ function setup() {
   scale(1);
   plotaxis();
   plotfun("x", color(0, 255, 0));
-  plotfun("(-0.5*x)+2", color(255, 0, 255));
-  plotfun("(.3*x+10)**2", color(255, 255, 0));
-  plotfun("((.13*x)**3+(.13*x)**2 -6*x-8)/4", color(0, 255, 255));
-  plotfun("sin(2*x)*80", color(255));
+  //plotfun("(-0.5*x)+2", color(255, 0, 255));
+  plotfun("(0.3*x)**2 - 3", color(255, 255, 0));
+  //plotfun("((.13*x)**3+(.13*x)**2 -6*x-8)/4", color(0, 255, 255));
+  //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
 }
 
@@ -34,10 +34,10 @@ function plotfun(eq, clr) {
   stroke(clr);
   noFill();
   beginShape();
-  for (let x = -width / 2; x < width / 2; x += step) {
+  for (let x = -width / 2; x < width / 2; x += 1) {
     let fy = eval(eq);
     let ccy = fy * -1; // ccy is corrected y since the top is -y and the bottom is +y
-    vertex(x, ccy);
+    vertex(x*zoom, ccy*zoom);
   }
   endShape();
 }
