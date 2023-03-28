@@ -1,4 +1,4 @@
-let zoom =1;
+let zoom =10;
 let res = .5 // less than a whole  number  1, .5, .25, .125 plotting 600, 1200, 2400, and 4800 points 
 // from - 300 to 300  (.125 looks like this (4800) [-300, -299.875, -299.75, -299.625, -299.5,])
 // but .5 looks like this (1200) [-300, -299.5, -299, -298.5, -298, 
