@@ -1,8 +1,9 @@
-let zoom =20;
+let zoom =1;
+let res = .125 // less than a whole  number .5 or 1 .25
 let cnv;
 // only y arrays as we plot x from -300 to 300
 
-let p1y = [];
+let p1y = [];  // plt 1 will always be y=x
 let p2y = [];
 function setup() {
   cnv =createCanvas(600, 600);
@@ -18,10 +19,11 @@ function setup() {
   textSize(32);
   plotaxis();
   getValues(p1y,"x");
-  getValues(p2y,"(0.3*x)**2 - 3");
+  getValues(p2y,"(x)**2 -8");
   //plotfun("(-0.5*x)+2", color(255, 0, 255));
   plotfun(p1y, color(255, 255, 0));
   plotfun(p2y, color(0, 255, 255));
+  print("hello",p1y)
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
 }
@@ -51,7 +53,7 @@ function plotaxis() {
 }
 
 function getValues(arr,eq){
-  for (let x = -width / 2; x < width / 2; x += 1) {
+  for (let x = -width / 2; x < width / 2; x += res) {
     let fy = eval(eq);
     /// correct values when plotting not here
     arr.push(fy)
@@ -63,12 +65,14 @@ function getValues(arr,eq){
 function plotfun(yarr, clr) {
   //stroke(random(255),random(255),random(255));
   stroke(clr);
+  strokeWeight(1)
   noFill();
   beginShape();
-  for (let x = -width / 2; x < width / 2; x += 1) {
-    let fy = yarr[x+width/2]; //so it gets the values from the array
+  for (let x = -width / 2; x < width / 2; x += res) {
+    let fy = yarr[x+((yarr.length)/2)]; //so it gets the values from the array
     let cy = fy * -1; // cy is corrected for plotting like cartesian not computer
-    vertex(x*zoom, cy*zoom);
+   vertex(x*zoom, cy*zoom);
+   ellipse(x*zoom,cy*zoom,5,5) // calculated points plotted on vertex
   }
   endShape();
 }
