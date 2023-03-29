@@ -1,17 +1,17 @@
-let zoom =10;
-let res = 1// less than a whole  number  1, .5, .25, .125 plotting 600, 1200, 2400, and 4800 points 
+let zoom = 10;
+let res = 1; // less than a whole  number  1, .5, .25, .125 plotting 600, 1200, 2400, and 4800 points
 // from - 300 to 300  (.125 looks like this (4800) [-300, -299.875, -299.75, -299.625, -299.5,])
-// but .5 looks like this (1200) [-300, -299.5, -299, -298.5, -298, 
+// but .5 looks like this (1200) [-300, -299.5, -299, -298.5, -298,
 let cnv;
 // to be plotted on a 600 by 600 canvas
 
-let p1y = [];  // plt 1 will always be y=x
+let p1y = []; // plt 1 will always be y=x
 let p2y = [];
 function setup() {
-  cnv =createCanvas(600, 600);
-  cx = (windowWidth-cnv.width)/2
-  cy = (windowHeight-cnv.height)/2
-  cnv.position(cx,cy)
+  cnv = createCanvas(600, 600);
+  cx = (windowWidth - cnv.width) / 2;
+  cy = (windowHeight - cnv.height) / 2;
+  cnv.position(cx, cy);
 
   angleMode(DEGREES);
   background(0);
@@ -20,21 +20,21 @@ function setup() {
 
   textSize(32);
   plotaxis();
-  getValues(p1y,"x");
-  getValues(p2y,"-1*(0.3*x)**2 +8");
+  getValues(p1y, "x");
+  getValues(p2y, "-1*(0.3*x)**2 +8");
   //getValues(p2y,"(-1.75*x) - 3")
   plotfun(p1y, color(255, 255, 0));
   plotfun(p2y, color(0, 255, 255));
-  print("hello",p1y)
-  print(p2y)
+  print("hello", p1y);
+  print(p2y);
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
-  cobweb(-15)
-  cobweb(10)
-  cobweb(11)
-  cobweb(17)
-  cobweb(14)
-  cobweb(19)
+  cobweb(-15);
+  cobweb(10);
+  cobweb(11);
+  cobweb(17);
+  cobweb(14);
+  cobweb(19);
 }
 /*
 function draw(){
@@ -61,52 +61,46 @@ function plotaxis() {
   line(-width / 2, 0, width, 0);
 }
 
-function getValues(arr,eq){
+function getValues(arr, eq) {
   for (let x = -width / 2; x < width / 2; x += res) {
     let fy = eval(eq);
     /// correct values when plotting not here
-    arr.push(fy)
-
-}
-
+    arr.push(fy);
+  }
 }
 
 function plotfun(yarr, clr) {
   //stroke(random(255),random(255),random(255));
   stroke(clr);
-  strokeWeight(1)
+  strokeWeight(1);
   noFill();
   beginShape();
   for (let x = -width / 2; x < width / 2; x += res) {
-    let fy = yarr[x+((yarr.length)/2)]; //so it gets the values from the array
+    let fy = yarr[x + yarr.length / 2]; //so it gets the values from the array
     let cy = fy * -1; // cy is corrected for plotting like cartesian not computer
-   vertex(x*zoom, cy*zoom);
-   ellipse(x*zoom,cy*zoom,5,5) // calculated points plotted on vertex
+    vertex(x * zoom, cy * zoom);
+    ellipse(x * zoom, cy * zoom, 5, 5); // calculated points plotted on vertex
   }
   endShape();
 }
 
-
-function cobweb(strt){
-  print("hello cobweb")
-  let tx = strt
-  let ty = strt
-  let nexty, nextx
-  print(ty)
-  stroke(0,255,0)
-  ellipse(tx*zoom,-ty*zoom, 30,30)
+function cobweb(strt) {
+  print("hello cobweb");
+  let tx = strt;
+  let ty = strt;
+  let nexty, nextx;
+  print(ty);
+  stroke(0, 255, 0);
+  ellipse(tx * zoom, -ty * zoom, 30, 30);
   // get that positionin the array
-  for (let i =0; i<10; i++){
-     nextx = tx
-     nexty = p2y[tx+((600)/2)] 
-    line(tx*zoom,-ty*zoom, nextx*zoom,-nexty*zoom)
-      tx =floor(nexty)
-      ty = floor(nexty)
-      print(tx,ty)
-    line(nextx*zoom,-nexty*zoom ,tx*zoom, -ty*zoom)
+  for (let i = 0; i < 10; i++) {
+    nextx = tx;
+    nexty = p2y[tx + 600 / 2];
+    line(tx * zoom, -ty * zoom, nextx * zoom, -nexty * zoom);
+    tx = floor(nexty);
+    ty = floor(nexty);
+    print(tx, ty);
+    line(nextx * zoom, -nexty * zoom, tx * zoom, -ty * zoom);
     // get next xy point
-    
   }
-  
-
 }
