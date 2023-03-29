@@ -1,4 +1,4 @@
-let zoom = 10;
+let zoom = 5;
 let res = 1; // less than a whole  number  1, .5, .25, .125 plotting 600, 1200, 2400, and 4800 points
 // from - 300 to 300  (.125 looks like this (4800) [-300, -299.875, -299.75, -299.625, -299.5,])
 // but .5 looks like this (1200) [-300, -299.5, -299, -298.5, -298,
@@ -7,6 +7,8 @@ let cnv;
 
 let p1y = []; // plt 1 will always be y=x
 let p2y = [];
+
+let cobplot = -25
 function setup() {
   cnv = createCanvas(600, 600);
   cx = (windowWidth - cnv.width) / 2;
@@ -21,42 +23,47 @@ function setup() {
   textSize(32);
   plotaxis();
   getValues(p1y, "x");
-  getValues(p2y, "-1*(0.3*x)**2 +8");
+  getValues(p2y, "-1*(0.2*x)**2 +38");
   //getValues(p2y,"(-1.75*x) - 3")
   plotfun(p1y, color(255, 255, 0));
-  plotfun(p2y, color(0, 255, 255));
+  plotfun(p2y, color(0, 255, 0));
   print("hello", p1y);
   print(p2y);
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
-  cobweb(-15);
-  cobweb(10);
-  cobweb(11);
-  cobweb(17);
-  cobweb(14);
-  cobweb(19);
+  for (let i =-55; i<56;i++){
+    cobweb(i)
+  }
+  frameRate(10)
+
 }
-/*
+
 function draw(){
 
   
   translate(width / 2, height / 2); // move to center
-  background(0);
-  zoom = map(mouseX,0,width,1,30)
-  zoom = constrain(zoom,1,30) //constrain zoom
+  background(0,20);
+  
   //print(zoom)
   plotaxis();
-  plotfun("x", color(0, 255, 0));
-  //plotfun("(-0.5*x)+2", color(255, 0, 255));
-  plotfun("(0.3*x)**2 - 3", color(255, 255, 0));
-  //plotfun("sin(x)*10", color(255));
+  plotfun(p1y, color(200));
+  plotfun(p2y, color(255));
+  cobweb(cobplot)
+  cobplot ++
+  if (cobplot>56){
+    cobplot = -55
+    for (let i =-55; i<56;i++){
+      cobweb(i)
+    }
+  }
+
+  
  
 }
-*/
 
 function plotaxis() {
   //axis
-  stroke(255, 0, 0);
+  stroke(80);
   line(0, -height / 2, 0, height);
   line(-width / 2, 0, width, 0);
 }
@@ -72,14 +79,14 @@ function getValues(arr, eq) {
 function plotfun(yarr, clr) {
   //stroke(random(255),random(255),random(255));
   stroke(clr);
-  strokeWeight(1);
+  strokeWeight(2);
   noFill();
   beginShape();
   for (let x = -width / 2; x < width / 2; x += res) {
     let fy = yarr[x + yarr.length / 2]; //so it gets the values from the array
     let cy = fy * -1; // cy is corrected for plotting like cartesian not computer
     vertex(x * zoom, cy * zoom);
-    ellipse(x * zoom, cy * zoom, 5, 5); // calculated points plotted on vertex
+    //ellipse(x * zoom, cy * zoom, 5, 5); // calculated points plotted on vertex
   }
   endShape();
 }
@@ -89,9 +96,10 @@ function cobweb(strt) {
   let tx = strt;
   let ty = strt;
   let nexty, nextx;
+  strokeWeight(2)
   print(ty);
-  stroke(0, 255, 0);
-  ellipse(tx * zoom, -ty * zoom, 30, 30);
+  stroke(random(100,255),0, random(100,255));
+  //ellipse(tx * zoom, -ty * zoom, 30, 30);
   // get that positionin the array
   for (let i = 0; i < 10; i++) {
     nextx = tx;
