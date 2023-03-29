@@ -23,7 +23,7 @@ function setup() {
   textSize(32);
   plotaxis();
   getValues(p1y, "x");
-  getValues(p2y, "-1*(0.2*x)**2 +38");
+  getValues(p2y, "-1*(0.2*x)**2 +45");
   //getValues(p2y,"(-1.75*x) - 3")
   plotfun(p1y, color(255, 255, 0));
   plotfun(p2y, color(0, 255, 0));
@@ -42,7 +42,7 @@ function draw(){
 
   
   translate(width / 2, height / 2); // move to center
-  background(0,20);
+  background(0,15);
   
   //print(zoom)
   plotaxis();
