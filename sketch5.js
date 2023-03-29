@@ -30,6 +30,11 @@ function setup() {
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
   cobweb(-15)
+  cobweb(10)
+  cobweb(11)
+  cobweb(17)
+  cobweb(14)
+  cobweb(19)
 }
 /*
 function draw(){
