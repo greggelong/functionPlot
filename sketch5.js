@@ -29,7 +29,7 @@ function setup() {
   print(p2y)
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
-  cobweb(-10)
+  cobweb(-15)
 }
 /*
 function draw(){
@@ -88,9 +88,10 @@ function cobweb(strt){
   let ty = strt
   let nexty, nextx
   print(ty)
+  stroke(0,255,0)
   ellipse(tx*zoom,-ty*zoom, 30,30)
   // get that positionin the array
-  for (let i =0; i<8; i++){
+  for (let i =0; i<10; i++){
      nextx = tx
      nexty = p2y[tx+((600)/2)] 
     line(tx*zoom,-ty*zoom, nextx*zoom,-nexty*zoom)
