@@ -98,7 +98,7 @@ function cobweb(strt) {
   let nexty, nextx;
   strokeWeight(2)
   print(ty);
-  stroke(random(100,255),0, random(100,255));
+  stroke(random(100,255),random(255), random(100,255));
   //ellipse(tx * zoom, -ty * zoom, 30, 30);
   // get that positionin the array
   for (let i = 0; i < 10; i++) {
