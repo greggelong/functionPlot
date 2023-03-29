@@ -21,4 +21,4 @@ let cnv;
 // to be plotted on a 600 by 600 canvas
 
 
-sketch5.js plotting y = x and the function -1*(0.2*x)**2 +45 and then animating the first few iterates of that function for values -57 to 57.  This creates a cobweb diagram. These diagrams remind me of the god's eyes we would make as children wrapping yarn around sticks. Functions like this would make cool string art. I think I will give it a try.
+sketch5.js god's eye. plotting y = x and the function -1*(0.2*x)**2 +45 and then animating the first few iterates of that function for values -57 to 57.  This creates a cobweb diagram. These diagrams remind me of the god's eyes we would make as children wrapping yarn around sticks. Functions like this would make cool string art. I think I will give it a try.
