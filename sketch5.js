@@ -21,8 +21,8 @@ function setup() {
   textSize(32);
   plotaxis();
   getValues(p1y,"x");
-  getValues(p2y,"(x)**2 -8");
-  //plotfun("(-0.5*x)+2", color(255, 0, 255));
+  //getValues(p2y,"(x)**2 -8");
+  getValues(p2y,"(-0.75*x) - 3")
   plotfun(p1y, color(255, 255, 0));
   plotfun(p2y, color(0, 255, 255));
   print("hello",p1y)
