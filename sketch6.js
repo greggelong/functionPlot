@@ -7,7 +7,7 @@ let cnv;
 
 let p1y = []; // plt 1 will always be y=x
 let p2y = [];
-
+let eq1="-1*(0.2*x)**2 +45"
 let cobplot = -25
 function setup() {
   cnv = createCanvas(600, 600);
@@ -23,7 +23,7 @@ function setup() {
   textSize(32);
   plotaxis();
   getValues(p1y, "x");
-  getValues(p2y, "-1*(0.2*x)**2 +45");
+  getValues(p2y, eq1);
   //getValues(p2y,"(-1.75*x) - 3")
   plotfun(p1y, color(255, 255, 0));
   plotfun(p2y, color(0, 255, 0));
@@ -31,10 +31,12 @@ function setup() {
   print(p2y);
   //plotfun("sin(2*x)*80", color(255));
   //saveCanvas('myplot2', 'png');
-  for (let i =-55; i<56;i++){
-    cobweb(i)
-  }
-  frameRate(10)
+  //for (let i =-55; i<56;i++){
+   // cobweb(i)
+  //}
+  //frameRate(10)
+  //cobweb(3)
+  cobweb2(3)
 
 }
 
@@ -48,18 +50,19 @@ function draw(){
   plotaxis();
   plotfun(p1y, color(200));
   plotfun(p2y, color(255));
-  cobweb(cobplot)
+  cobweb2(cobplot)
   cobplot ++
   if (cobplot>56){
     cobplot = -55
     for (let i =-55; i<56;i++){
-      cobweb(i)
+      cobweb2(i)
     }
   }
 
   
  
 }
+
 
 function plotaxis() {
   //axis
@@ -93,6 +96,8 @@ function plotfun(yarr, clr) {
 
 function cobweb(strt) {
   print("hello cobweb");
+  // this function mirrors the way a human would do the cobweb plot on a graph
+  // by looking up points on the graph (or here in the array)
   let tx = strt;
   let ty = strt;
   let nexty, nextx;
@@ -109,6 +114,30 @@ function cobweb(strt) {
     ty = floor(nexty);
     print(tx, ty);
     line(nextx * zoom, -nexty * zoom, tx * zoom, -ty * zoom);
+    // get next xy point
+  }
+}
+
+function cobweb2(strt) {
+  //print("hello cobweb2");
+  // a much better way to get the points by iterating the seed through the function i
+  // instead of looking them up in the array as I did in the last version.
+  let x = strt;
+  let y = strt;
+  let nexty, nextx;
+  strokeWeight(2)
+  //print(y);
+  stroke(random(100,255),random(255), random(100,255));
+  //ellipse(tx * zoom, -ty * zoom, 30, 30);
+  // get that positionin the array
+  for (let i = 0; i < 10; i++) {
+    nextx = x;
+    nexty = eval(eq1);  // getting the values by iteration
+    line(x * zoom, -y * zoom, nextx * zoom, -nexty * zoom);
+    x = nexty;
+    y = nexty;
+    //print(x, y);
+    line(nextx * zoom, -nexty * zoom, x * zoom, -y * zoom);
     // get next xy point
   }
 }
