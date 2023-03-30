@@ -22,3 +22,5 @@ let cnv;
 
 
 sketch5.js god's eye. plotting y = x and the function -1*(0.2*x)**2 +45 and then animating the first few iterates of that function for values -57 to 57.  This creates a cobweb diagram. These diagrams remind me of the god's eyes we would make as children wrapping yarn around sticks. Functions like this would make cool string art. I think I will give it a try.
+
+sketch6.js an improvement to the cobweb diagram functions. That plots values by running through the function not looking up their values in an array.  Sketch5.js's cobweb() function mirrors the way a human would do the cobweb plot on a graph by looking up points on the graph (or here in the array). This method was described in Feldman's book and I just wanted to make a function that followed that human algorithm.  But sketch6.js is more accurate and and just iterates a seed number through the function itself getting values and plotting them.  I then also animate plotting seeds from -57 to 57
