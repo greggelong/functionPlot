@@ -13,6 +13,11 @@ let p2y = [];
 //let eq1= "(-.33*x)-3"
 let eq1 = "x-0.3*x**2+30"
 let cobplot = -25
+
+let eqs= ["-1*(0.2*x)**2 +45","x-0.3*x**2+30","(0.045*x)**3 - 3", "(-0.045*x)**3 - 3", "(.33*x)-3", "(-.33*x)-3"]
+let eqcount= 0;
+let fc=-1
+
 function setup() {
   cnv = createCanvas(600, 600);
   cx = (windowWidth - cnv.width) / 2;
@@ -23,37 +28,26 @@ function setup() {
   background(0);
   strokeWeight(1);
   translate(width / 2, height / 2); // move to center
-
-  textSize(32);
   plotaxis();
-  getValues(p1y, "x");
-  getValues(p2y, eq1);
-  //getValues(p2y,"(-1.75*x) - 3")
-  plotfun(p1y, color(255, 255, 0));
-  plotfun(p2y, color(0, 255, 0));
-  print("hello", p1y);
-  print(p2y);
-  //plotfun("sin(2*x)*80", color(255));
-  //saveCanvas('myplot2', 'png');
-  //for (let i =-55; i<56;i++){
-   // cobweb(i)
-  //}
-  //frameRate(10)
-  //cobweb(3)
-  cobweb2(3)
-
+  
+  
 }
 
 function draw(){
-
   
+  if (fc%111==0){
+    background(0)
+    
+    cobplot =57
+    eqcount++
+    eqcount=eqcount%eqs.length
+  }
   translate(width / 2, height / 2); // move to center
-  background(0,15);
-  
+  background(0,10);
+  //print(eqcount)
   //print(zoom)
   plotaxis();
-  plotfun(p1y, color(200));
-  plotfun(p2y, color(255));
+  plotfun(color(255));
   cobweb2(cobplot)
   cobplot ++
   if (cobplot>56){
@@ -61,8 +55,9 @@ function draw(){
     for (let i =-55; i<56;i++){
       cobweb2(i)
     }
+    //saveCanvas('myCanvas', 'png');
   }
-
+  fc++
   
  
 }
@@ -71,8 +66,10 @@ function draw(){
 function plotaxis() {
   //axis
   stroke(80);
-  line(0, -height / 2, 0, height);
-  line(-width / 2, 0, width, 0);
+  line(0, -height / 2, 0, height); //vert
+  line(-width / 2, 0, width, 0); //horizontal
+  stroke(255)
+  line(-width/2,height/2,width/2,-height/2)
 }
 
 function getValues(arr, eq) {
@@ -83,14 +80,15 @@ function getValues(arr, eq) {
   }
 }
 
-function plotfun(yarr, clr) {
+function plotfun(clr) {
   //stroke(random(255),random(255),random(255));
   stroke(clr);
   strokeWeight(2);
   noFill();
   beginShape();
+  //let myeq = eval(eq)
   for (let x = -width / 2; x < width / 2; x += res) {
-    let fy = yarr[x + yarr.length / 2]; //so it gets the values from the array
+    let fy = eval(eqs[eqcount]); //so it gets the values from the array
     let cy = fy * -1; // cy is corrected for plotting like cartesian not computer
     vertex(x * zoom, cy * zoom);
     //ellipse(x * zoom, cy * zoom, 5, 5); // calculated points plotted on vertex
@@ -98,29 +96,7 @@ function plotfun(yarr, clr) {
   endShape();
 }
 
-function cobweb(strt) {
-  print("hello cobweb");
-  // this function mirrors the way a human would do the cobweb plot on a graph
-  // by looking up points on the graph (or here in the array)
-  let tx = strt;
-  let ty = strt;
-  let nexty, nextx;
-  strokeWeight(2)
-  print(ty);
-  stroke(random(100,255),random(255), random(100,255));
-  //ellipse(tx * zoom, -ty * zoom, 30, 30);
-  // get that positionin the array
-  for (let i = 0; i < 10; i++) {
-    nextx = tx;
-    nexty = p2y[tx + 600 / 2];
-    line(tx * zoom, -ty * zoom, nextx * zoom, -nexty * zoom);
-    tx = floor(nexty);
-    ty = floor(nexty);
-    print(tx, ty);
-    line(nextx * zoom, -nexty * zoom, tx * zoom, -ty * zoom);
-    // get next xy point
-  }
-}
+ 
 
 function cobweb2(strt) {
   //print("hello cobweb2");
@@ -136,7 +112,7 @@ function cobweb2(strt) {
   // get that positionin the array
   for (let i = 0; i < 10; i++) {
     nextx = x;
-    nexty = eval(eq1);  // getting the values by iteration
+    nexty = eval(eqs[eqcount]);  // getting the values by iteration
     line(x * zoom, -y * zoom, nextx * zoom, -nexty * zoom);
     x = nexty;
     y = nexty;
