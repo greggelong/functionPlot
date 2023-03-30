@@ -7,7 +7,11 @@ let cnv;
 
 let p1y = []; // plt 1 will always be y=x
 let p2y = [];
-let eq1="-1*(0.2*x)**2 +45"
+//let eq1=  "(0.045*x)**3 - 3"//"-1*(0.2*x)**2 +45"
+//let eq1=  "(-0.045*x)**3 - 3"//"-1*(0.2*x)**2 +45"
+//let eq1= "(.33*x)-3"
+//let eq1= "(-.33*x)-3"
+let eq1 = "x-0.3*x**2+30"
 let cobplot = -25
 function setup() {
   cnv = createCanvas(600, 600);
