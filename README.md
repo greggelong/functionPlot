@@ -27,4 +27,7 @@ sketch6.js an improvement to the cobweb diagram functions. That plots values by 
 
 sketch7. i am animating the plotting multiple math functions and each of their cobweb plots.  I hold the math functions in an array and loop through them.  for this version i changed how I handled the plotting. I did not hold any points in an array.  and I only plotted a single function.  the y=x function i drew with a line.  This saved some time as I am using eval (which is slow but also bad practice. but easy) 
 
-sketch8 will be julia sets and cobweb plots of linear functions
+sketch8 I am using slightly better coding practices. I have changed the array of strings that held the equations which were read by eval() in the  plotting functions, to an array of functions.  you can even pass arguments to these functions 
+
+
+functionArray[index](argument)
